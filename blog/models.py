@@ -9,11 +9,12 @@ class Passport(models.Model):
     passport_series = models.CharField(max_length=10)
     passport_number = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=15)
+    created_time = models.DateField(auto_now=True)
 
-    def create_verify_code(self):
-        code = "".join([str(random.randint(0, 10000) % 10) for _ in range(4)])
-        print("Cod telefon uchun -->", code)
-        return code
+    # def create_verify_code(self):
+    #     code = "".join([str(random.randint(0, 10000) % 10) for _ in range(4)])
+    #     print("Cod telefon uchun -->", code)
+    #     return code
 
     def __str__(self):
         return self.first_name
@@ -31,6 +32,7 @@ class Petition(models.Model):
     government = models.ForeignKey(Government, on_delete=models.CASCADE)
     appealType = models.ForeignKey(AppealType, on_delete=models.CASCADE)
     message = models.TextField()
+    created_time = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.message
